@@ -13,7 +13,9 @@ export class FilmsService {
     }
 
     create(createFilmDto: CreateFilmDto) {
+
       const createdFilm = new this.filmModel(createFilmDto);
+
       return createdFilm.save();
     }
 

@@ -8,8 +8,10 @@ export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
   @Post()
-  create(@Body() createCommentDto: CreateCommentDto) {
+  async create(@Body() createCommentDto: CreateCommentDto): Promise<any> {
+
     return this.commentsService.create(createCommentDto);
+
   }
 
   @Get()
