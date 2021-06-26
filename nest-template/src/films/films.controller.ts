@@ -3,17 +3,21 @@ import { FilmsService } from './films.service';
 import { CreateFilmDto } from './dto/create-film.dto';
 import { UpdateFilmDto } from './dto/update-film.dto';
 import {JwtAuthGuard} from "../auth/jwt-auth-guard.service";
+import {Public} from "../auth/public";
 
 @Controller('films')
 export class FilmsController {
   constructor(private readonly filmsService: FilmsService) {}
 
+
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createFilmDto: CreateFilmDto) {
     return this.filmsService.create(createFilmDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+
+  @Public()
   @Get()
   findAll() {
     return this.filmsService.findAll();
