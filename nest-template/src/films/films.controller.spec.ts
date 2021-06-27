@@ -17,4 +17,8 @@ describe('FilmsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('should be registered', () => {
+    expect(controller).toBeDefined();
+  });
 });

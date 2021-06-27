@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
 
 
 @Module({
-  imports: [FilmsModule, CommentsModule,  MongooseModule.forRoot('mongodb://localhost:27017/nest'), AuthModule, UsersModule],
+  imports: [FilmsModule, CommentsModule,  MongooseModule.forRoot('mongodb://localhost:27017/nestjstemplate'), AuthModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
