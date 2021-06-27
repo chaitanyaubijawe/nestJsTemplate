@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import {CreateUserDto} from "../users/dto/create-user.dto";
 
 @Injectable()
 export class AuthService {
@@ -24,4 +25,21 @@ export class AuthService {
             access_token: this.jwtService.sign(payload),
         };
     }
+
+    async register(user: CreateUserDto) {
+        const userExists = await this.usersService.findOneInDb(user.username);
+        if(userExists == undefined || userExists.length === 0){
+
+            const userSaved =   await this.usersService.save(user);
+            const payload = { username: user.username, sub: userSaved._id };
+            return {
+                user:userSaved,
+                access_token: this.jwtService.sign(payload),
+            };
+        }else{
+            // else throw error and http status code as already exists.
+            throw new HttpException('Already Exists', HttpStatus.CONFLICT);
+        }
+    }
+
 }
