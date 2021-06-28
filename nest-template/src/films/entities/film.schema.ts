@@ -1,6 +1,6 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {Document} from 'mongoose';
-import {Comment} from "../../comments/entities/comment.schema";
+import {Comment, CommentDocument} from "../../comments/entities/comment.schema";
 
 export type FilmDocument = Film & Document;
 
@@ -27,7 +27,7 @@ export class Film {
     @Prop()
     photo: String;
     @Prop()
-    comments: [Comment];
+    comments: CommentDocument[];
 }
 
 export const FilmSchema = SchemaFactory.createForClass(Film);

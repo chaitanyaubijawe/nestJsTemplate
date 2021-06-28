@@ -24,8 +24,8 @@ export class FilmsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.filmsService.findOne(+id);
+  async findOne(@Param('id') id: string): Promise<any> {
+    return this.filmsService.findOne(id);
   }
 
   @Patch(':id')

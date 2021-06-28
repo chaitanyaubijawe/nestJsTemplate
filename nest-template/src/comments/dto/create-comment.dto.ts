@@ -1,13 +1,13 @@
 export class CreateCommentDto {
 
     private _filmId:string;
-    private _name:string;
+    private _username:string;
     private _comment:string;
 
 
     constructor(filmId: string, name: string, comment: string) {
         this._filmId = filmId;
-        this._name = name;
+        this._username = name;
         this._comment = comment;
     }
 
@@ -20,12 +20,12 @@ export class CreateCommentDto {
         this._filmId = value;
     }
 
-    get name(): string {
-        return this._name;
+    get username(): string {
+        return this._username;
     }
 
-    set name(value: string) {
-        this._name = value;
+    set username(value: string) {
+        this._username = value;
     }
 
     get comment(): string {

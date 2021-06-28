@@ -1,30 +1,33 @@
-import {Inject, Injectable} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {CreateFilmDto} from './dto/create-film.dto';
 import {UpdateFilmDto} from './dto/update-film.dto';
-import {Film, FilmDocument, FilmSchema} from "./entities/film.schema";
+import {Film, FilmDocument} from "./entities/film.schema";
 import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
+import {Comment, CommentDocument} from "../comments/entities/comment.schema";
 
 @Injectable()
 export class FilmsService {
 
 
-    constructor(@InjectModel(Film.name) private filmModel: Model<FilmDocument>) {
+    constructor(@InjectModel(Film.name) private filmModel: Model<FilmDocument>, @InjectModel(Comment.name) private commentModel: Model<CommentDocument>) {
     }
 
     create(createFilmDto: CreateFilmDto) {
 
-      const createdFilm = new this.filmModel(createFilmDto);
+        const createdFilm = new this.filmModel(createFilmDto);
 
-      return createdFilm.save();
+        return createdFilm.save();
     }
 
     findAll() {
+
         return this.filmModel.find().exec();
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} film`;
+
+    findOne(id: string) {
+        return this.filmModel.findById(id).exec();
     }
 
     update(id: number, updateFilmDto: UpdateFilmDto) {
