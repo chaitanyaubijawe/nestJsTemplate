@@ -26,8 +26,6 @@ export class Film {
     genre: String;
     @Prop()
     photo: String;
-    @Prop()
-    comments: CommentDocument[];
 }
 
 export const FilmSchema = SchemaFactory.createForClass(Film).plugin(mongoosePaginate);

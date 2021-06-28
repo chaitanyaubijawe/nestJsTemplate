@@ -9,8 +9,6 @@ export class UserDb {
 
 
     @Prop()
-    id: string;
-    @Prop()
     username: string;
     @Prop()
     password: string;
