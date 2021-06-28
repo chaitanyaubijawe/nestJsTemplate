@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query} from '@nestjs/common';
 import { FilmsService } from './films.service';
 import { CreateFilmDto } from './dto/create-film.dto';
 import { UpdateFilmDto } from './dto/update-film.dto';
@@ -19,8 +19,8 @@ export class FilmsController {
 
   @Public()
   @Get()
-  findAll() {
-    return this.filmsService.findAll();
+  findAll(@Query() query) {
+    return this.filmsService.findAll(+query.page,1);
   }
 
   @Get(':id')

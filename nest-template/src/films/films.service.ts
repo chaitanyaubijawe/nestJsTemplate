@@ -6,6 +6,7 @@ import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
 import {Comment, CommentDocument} from "../comments/entities/comment.schema";
 
+
 @Injectable()
 export class FilmsService {
 
@@ -20,9 +21,23 @@ export class FilmsService {
         return createdFilm.save();
     }
 
-    findAll() {
+    findAll(skip: number, limit: number) {
 
-        return this.filmModel.find().exec();
+        return new Promise((resolve, rejects) => {
+            this.filmModel.find({}, {}, {skip: skip, limit: limit}).exec((err, events) => {
+
+                this.filmModel.countDocuments().exec(function (err, count) {
+
+                    resolve({
+                        events: events,
+                        page: skip,
+                        pages: count / limit
+                    });
+                })
+            });
+        });
+
+
     }
 
 

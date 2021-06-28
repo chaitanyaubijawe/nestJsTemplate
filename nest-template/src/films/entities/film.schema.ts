@@ -1,7 +1,7 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {Document} from 'mongoose';
 import {Comment, CommentDocument} from "../../comments/entities/comment.schema";
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 export type FilmDocument = Film & Document;
 
 @Schema()
@@ -30,4 +30,4 @@ export class Film {
     comments: CommentDocument[];
 }
 
-export const FilmSchema = SchemaFactory.createForClass(Film);
+export const FilmSchema = SchemaFactory.createForClass(Film).plugin(mongoosePaginate);

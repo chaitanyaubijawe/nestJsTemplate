@@ -1,0 +1,11 @@
+{{film.name}} | {{ film.description}} |   {{ film._id}}
+
+Comments are
+
+
+<div *ngFor="let comment of comments">
+
+    Username - {{comment.username}} <br>
+    Comment - {{comment.comment}} <br>
+
+</div>

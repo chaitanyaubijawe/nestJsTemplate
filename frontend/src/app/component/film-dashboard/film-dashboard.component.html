@@ -1,0 +1,11 @@
+
+
+<div *ngFor="let film of films | paginate: { itemsPerPage: 1, currentPage: page, totalItems: totalElement }">
+
+  {{film.name}} | {{ film.description}} |   {{ film._id}} | <a routerLink="/filmdetails" [state]="{data:film}"><button class="btn btn-success pull-right" > View details</button></a>
+
+</div>
+
+<p>
+  <pagination-controls (pageChange)="getFilms((page = $event))"></pagination-controls>
+</p>
