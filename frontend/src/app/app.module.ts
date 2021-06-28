@@ -11,13 +11,22 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./services/auth.interceptor";
 //import {AlertModule} from "ngx-bootstrap/alert";
 import {NgxPaginationModule} from 'ngx-pagination';
+import {LogoutComponent} from "./component/logout/logout.component";
+import { RegisterComponent } from './component/register/register.component';
+import { CreatefilmComponent } from './component/createfilm/createfilm.component';
+import {ErrorInterceptor} from "./services/error.interceptor";
+import { CreatecommentComponent } from './component/createcomment/createcomment.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         FilmDashboardComponent,
-        FilmDetailComponent
+        FilmDetailComponent,
+        LogoutComponent,
+        RegisterComponent,
+        CreatefilmComponent,
+        CreatecommentComponent
     ],
     imports: [
         //AlertModule.forRoot(),
@@ -27,7 +36,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
         FormsModule, ReactiveFormsModule,
         NgxPaginationModule
     ],
-    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},],
+    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
     bootstrap: [AppComponent]
 })
 export class AppModule {

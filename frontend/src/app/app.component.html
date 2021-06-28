@@ -1,8 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<div class="container">
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+
+  <div >
+
+    <p class="text-right" > <a routerLink="/logout"> Log out</a>  </p>
+    <p class="text-right" > <a routerLink="/registerfilm"> Register a film </a>  </p>
+    <p class="text-right" > <a routerLink="/dashboard"> Dashboard </a>  </p>
+
+  </div>
+
+  <router-outlet></router-outlet>
+
 </div>
 
-<router-outlet></router-outlet>
+

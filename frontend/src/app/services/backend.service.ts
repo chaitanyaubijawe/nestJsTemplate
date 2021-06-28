@@ -1,20 +1,42 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {BehaviorSubject} from "rxjs";
+import {Film} from "../model/film";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class BackendService {
 
-  constructor(private http:HttpClient) { }
+    private filmObject = new BehaviorSubject(null);
+    private commentsObject = new BehaviorSubject(null);
+    currentFilm = this.filmObject.asObservable();
+    comments = this.commentsObject.asObservable();
 
+    constructor(private http: HttpClient) {
+    }
+    updateFilm(film: Film) {
+        this.filmObject.next(film);
+    }
 
-  findAllFilms(page:number){
-    return this.http.get("/services/films?page="+page);
-  }
+    updateComments(comments: any[]) {
+        this.commentsObject.next(comments);
+    }
 
-  findAllComments(id:string){
+    findAllFilms(page: number) {
+        return this.http.get("/services/films?page=" + page);
+    }
 
-    return this.http.get("/services/comments/"+id);
-  }
+    findAllComments(id: string) {
+
+        return this.http.get("/services/comments/" + id);
+    }
+
+    createFilm(name: string, description: string, genre: string, releaseDate: string, rating: number) {
+        return this.http.post("/services/films", {name, description, genre, releaseDate, rating});
+    }
+
+    addComment(filmId:string, username:string, comment:string){
+        return this.http.post("/services/comments", {filmId,username,comment});
+    }
 }

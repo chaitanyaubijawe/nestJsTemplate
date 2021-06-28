@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
+import {first} from "rxjs/operators";
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
 
     loginForm: FormGroup;
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    // convenience getter for easy access to form fields
+// convenience getter for easy access to form fields
     get f() {
         return this.loginForm.controls;
     }
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.register(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -59,8 +59,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(["/dashboard"]);
                 },
                 error => {
-
-                    this.error = error.statusText;
+                    this.error = error;
                     this.loading = false;
                 });
     }

@@ -1,0 +1,50 @@
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+<h2>Register a film</h2>
+<div class="container">
+  <!-- Content here -->
+  <form [formGroup]="registerFilmForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && formFields.name.errors }" />
+      <div *ngIf="submitted && formFields.name.errors" class="invalid-feedback">
+        <div *ngIf="formFields.name.errors.required">name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">description</label>
+      <input type="text" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && formFields.description.errors }" />
+      <div *ngIf="submitted && formFields.description.errors" class="invalid-feedback">
+        <div *ngIf="formFields.description.errors.required">description is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input type="text" formControlName="rating" class="form-control" [ngClass]="{ 'is-invalid': submitted && formFields.rating.errors }" />
+      <div *ngIf="submitted && formFields.rating.errors" class="invalid-feedback">
+        <div *ngIf="formFields.rating.errors.required">rating is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <input type="text" formControlName="genre" class="form-control" [ngClass]="{ 'is-invalid': submitted && formFields.genre.errors }" />
+      <div *ngIf="submitted && formFields.genre.errors" class="invalid-feedback">
+        <div *ngIf="formFields.genre.errors.required">genre is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="releaseDate">releaseDate</label>
+      <input type="text" formControlName="releaseDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && formFields.releaseDate.errors }" />
+      <div *ngIf="submitted && formFields.releaseDate.errors" class="invalid-feedback">
+        <div *ngIf="formFields.releaseDate.errors.required">releaseDate is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Register film
+      </button>
+    </div>
+  </form>
+</div>

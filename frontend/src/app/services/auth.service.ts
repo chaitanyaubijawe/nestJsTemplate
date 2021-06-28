@@ -18,4 +18,12 @@ export class AuthService {
 
         return this.http.post("/services/auth/login", {username, password});
     }
+
+    logout(){
+        localStorage.clear();
+    }
+
+    register(username: string, password: string){
+        return this.http.post("/services/auth/register", {username, password});
+    }
 }

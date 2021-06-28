@@ -1,11 +1,44 @@
-{{film.name}} | {{ film.description}} |   {{ film._id}}
-
-Comments are
 
 
-<div *ngFor="let comment of comments">
+<div class="container">
 
-    Username - {{comment.username}} <br>
-    Comment - {{comment.comment}} <br>
+
+    <div class="media">
+        <img class=" align-self-start mr-3" src="favicon.ico"
+             alt="Generic placeholder image">
+
+        <div class="media-body">
+            <h5 class="mt-0">{{film.name}}</h5>
+            <h5 class="mt-0">{{ film.description}}</h5>
+            <h5 class="mt-0">{{ film.rating}}</h5>
+            <h5 class="mt-0">{{ film.releaseDate | date}}</h5>
+            <h5 class="mt-0">{{ film.genre}}</h5>
+        </div>
+        <div  class="media mt-3">
+
+            <app-createcomment [filmId]="film._id"> </app-createcomment>
+        </div>
+
+        <div class="media mt-3">
+
+            <div *ngFor="let comment of comments">
+                <a class="pr-3" href="#">
+                    <img src="favicon.ico" alt="User image">
+                </a>
+                <div class="media-body">
+                    <h5 class="mt-0">User - {{comment.username}}</h5>
+                </div>
+                <h5 class="mt-0"> Comment - {{comment.comment}}</h5>
+            </div>
+        </div>
+
+
+    </div>
+
 
 </div>
+
+
+
+
+
